@@ -7,6 +7,8 @@ import {PublicModule} from './public/public.module';
 import {PrivateModule} from './private/private.module';
 import {RouteModuleModule} from './route-module/route-module.module';
 import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,8 @@ import {RouterModule} from '@angular/router';
     PublicModule,
     PrivateModule,
     RouteModuleModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

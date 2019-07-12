@@ -3,13 +3,13 @@
     <div class="col-md-5 col-xs-12 " style="background-image: url('../../../assets/img/bg-4.jpg');background-size: cover;">
       <div class="row d-flex align-items-center h-100">
         <div class="header-siderbar p-5 col-12">
-          <img src="../assets/img/biat.png" class="img-fluid" style=" width:50px;height: 50px"/>
+          <img src="../assets/img/biat.png" class="img-fluid fadeIn first" style=" width:50px;height: 50px"/>
 
         </div>
 
         <div class="body-sidebar p-5 col-12 ">
-          <h3 class="text-white">Welcome To BIAT</h3>
-          <span style="color: rgba(255, 255, 255, 0.7)">Over the past 40 years, BIAT has become a strong banking group thanks to the commitment and expertise of the men and women who make our company what it is today.</span>
+          <h3 class="text-white">Bienvenue Au BIAT</h3>
+          <span style="color: rgba(255, 255, 255, 0.7)">Au cours des 40 dernières années, la BIAT est devenue un groupe bancaire fort grâce à l'engagement et à l'expertise des hommes et des femmes qui font de notre société ce qu'elle est aujourd'hui.</span>
         </div>
 
         <div class="d-flex bd-highlight mb-3 p-5 col-12">
@@ -26,22 +26,21 @@
           <!-- Tabs Titles -->
 
           <!-- Icon -->
-          <div class="fadeIn first p-5">
-            <h3>Sign In</h3>
+          <div class="fadeIn first p-2">
+            <h3>S'inscrire</h3>
           </div>
 
           <!-- Login Form -->
-          <form class="m-5">
-            <input type="text" id="login" class="fadeIn second" name="Email" placeholder="Email">
-            <input type="text"  class="fadeIn second" name="Last Name" placeholder="Nom">
-            <input type="text"  class="fadeIn second" name="First Name" placeholder="Prenom">
-            <input type="password" id="password" class="fadeIn third my-4" name="Password" placeholder="Password">
-            <input type="submit" class="fadeIn fourth " value="Log In">
+          <form class="m-5" role="form" (ngSubmit)="register()">
+            <input type="text"  [(ngModel)]="nom" class="fadeIn second" name="Last Name" placeholder="Nom" required="required">
+            <input type="text"  [(ngModel)]="prenom" class="fadeIn second" name="First Name" placeholder="Prenom" required="required">
+            <input type="email" [(ngModel)]="username" id="login" class="fadeIn second" name="Email" placeholder="Email" required="required">
+            <input type="password" [(ngModel)]="password" id="password" class="fadeIn third" name="Password" placeholder="Mot de passe" required="required">
+            <input type="password" [(ngModel)]="repassword" class="fadeIn third" name="RePassword" placeholder="Confirm Mot de passe" required="required">
+            <input type="submit"  class="fadeIn fourth " value="Envoyer">
           </form>
-
-          <!-- Remind Passowrd -->
           <div id="formFooter">
-            <a class="underlineHover" href="#">Don't have an account yet?   Sign Up!</a>
+            <a class="underlineHover" routerLink="/login" routerLinkActive="active">Vous avez déja un compte? Connectez Vous!</a>
           </div>
 
         </div>
