@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AccountComponent } from './account/account.component';
+import {PublicModule} from '../public/public.module';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AccountComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    PublicModule
   ]
 })
 export class PrivateModule { }
