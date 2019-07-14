@@ -1,31 +1,31 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {ApiUri} from './api-uri';
-import {User} from '../models/User';
-import {Roles} from '../models/Roles';
+import {User} from './models/User';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private userLoggedIn: User;
-  role = new Roles();
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private route: Router) { }
   public authenticateMe(email: string, password: string) {
     const body = { email, password };
-    console.log('Sending Authorization request ..');
     return  this.http.post<User>(
       ApiUri.URI + 'api/auth/login',
       body,
     );
   }
   public registerMe(user: User) {
-    const body = user ;
-    console.log('Sending Authorization request ..');
     return  this.http.post(
       ApiUri.URI + 'api/auth/register',
-      body,
+      user,
     );
+  }
+  public logout() {
+    this.userLoggedIn = null;
+    return this.route.navigate(['login']);
   }
   getUser() {
     return this.userLoggedIn;
