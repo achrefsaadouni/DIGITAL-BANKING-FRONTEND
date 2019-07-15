@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import {AccountComponent} from './account/account.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {MatSnackBarModule} from '@angular/material';
 
 
 
@@ -27,7 +28,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     FormsModule,
     NgbCarouselModule,
     NgxSpinnerModule,
-
+    MatSnackBarModule
   ]
 })
 export class PublicModule { }

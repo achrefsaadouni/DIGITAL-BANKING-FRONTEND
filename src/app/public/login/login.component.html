@@ -33,7 +33,7 @@
           <!-- Login Form -->
           <form class="m-5" role="form" (ngSubmit)="loginIn()">
             <input type="text" [(ngModel)]="login" id="login" class="fadeIn second" name="Email" placeholder="Email" required="required">
-            <input type="text" [(ngModel)]="password" id="password" class="fadeIn third my-4" name="Password" placeholder="Mot de passe" >
+            <input type="password" [(ngModel)]="password" id="password" class="fadeIn third my-4" name="Password" placeholder="Mot de passe" >
             <input type="submit" class="fadeIn fourth " value="Connexion">
           </form>
 
@@ -56,3 +56,4 @@
   [fullScreen] = "true">
   <p style="color: white" > </p>
 </ngx-spinner>
+

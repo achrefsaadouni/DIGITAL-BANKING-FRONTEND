@@ -8,7 +8,7 @@ import {LayoutComponent} from '../private/layout/layout.component';
 import {UsersComponent} from '../private/users/users.component';
 import {DashboardComponent} from '../private/dashboard/dashboard.component';
 import {AccountsComponent} from '../private/accounts/accounts.component';
-import {AdminGuard} from '../private/admin.guard';
+import {AdminGuard} from '../private/security/admin.guard';
 
 
 const routes: Routes = [

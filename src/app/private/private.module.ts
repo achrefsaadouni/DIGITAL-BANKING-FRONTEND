@@ -17,6 +17,8 @@ import { UsersComponent } from './users/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {UserService} from './services/user.service';
+
 
 
 
@@ -38,6 +40,8 @@ import {NgxSpinnerModule} from 'ngx-spinner';
     MatSortModule,
     MatPaginatorModule,
     NgxSpinnerModule
-  ]
+  ],
+  providers:  [
+     UserService]
 })
 export class PrivateModule { }

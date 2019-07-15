@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse"  *ngIf="!user">
+    <div class="collapse navbar-collapse"  id="navbarCollapse" *ngIf="!user">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Accueil</a>
@@ -29,7 +29,7 @@
 
 
 
-    <div class="collapse navbar-collapse"  *ngIf="user">
+    <div class="collapse navbar-collapse" id="navbarCollapse"  *ngIf="user">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/home" routerLinkActive="active">Accueil</a>

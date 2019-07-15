@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,9 @@ import {NgxSpinnerService} from 'ngx-spinner';
 export class LoginComponent implements OnInit {
   login: string;
   password: string;
-
-  constructor(private service: AuthService, private route: Router, private spinner: NgxSpinnerService) {
+  Error: boolean;
+  constructor(private service: AuthService, private route: Router, private spinner: NgxSpinnerService, private snackBar: MatSnackBar) {
+    this.Error = false;
   }
 
   ngOnInit() {
@@ -31,7 +33,17 @@ export class LoginComponent implements OnInit {
           this.route.navigate(['home']);
         }
       }, err => {
-        console.log(err);
+        this.spinner.hide();
+        if ( err.status === 401) {
+          this.snackBar.open('Email / Mot de passe que vous avez entré n\'est pas valide', 'ok', {
+            duration: 5000,
+          });
+        }
+        if ( err.status === 500) {
+        this.snackBar.open('le serveur peut étre indisponible pour le moment', 'ok', {
+          duration: 5000,
+        });
+      }
       }
     );
   }

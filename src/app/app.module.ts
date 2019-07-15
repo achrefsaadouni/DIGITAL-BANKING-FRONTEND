@@ -7,8 +7,10 @@ import {PublicModule} from './public/public.module';
 import {PrivateModule} from './private/private.module';
 import {RouteModuleModule} from './route-module/route-module.module';
 import {RouterModule} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BasicAuthInterceptor} from './public/shared/BasicAuthInterceptor';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass: BasicAuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
