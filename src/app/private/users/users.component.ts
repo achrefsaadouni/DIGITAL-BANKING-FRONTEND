@@ -65,7 +65,8 @@ export class UsersComponent implements OnInit {
       cancelButtonText: 'Non, garde le'
     }).then((result) => {
       if (result.value) {
-        this.service.ban(row._id).subscribe();
+        // @ts-ignore
+        this.service.ban(row.id).subscribe();
         Swal.fire({
           type: 'success',
           title: 'Utilisateur banni',
@@ -97,7 +98,8 @@ export class UsersComponent implements OnInit {
       cancelButtonText: 'Non, garde le'
     }).then((result) => {
       if (result.value) {
-        this.service.restorer(row._id).subscribe();
+        // @ts-ignore
+        this.service.restorer(row.id).subscribe();
         Swal.fire({
           type: 'success',
           title: 'Utilisateur restoré',

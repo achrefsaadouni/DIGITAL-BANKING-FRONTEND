@@ -26,7 +26,12 @@ export class UserService {
     return this.http.get<User>(
       ApiUri.URI + 'user-service/api/user/' + id);
   }
-
+  public update(id, user) {
+    return this.http.put(
+      ApiUri.URI + 'user-service/api/user/' + id,
+      user
+    );
+  }
   public ban(id) {
     return this.http.put(
       ApiUri.URI + 'user-service/api/user/ban/' + id,

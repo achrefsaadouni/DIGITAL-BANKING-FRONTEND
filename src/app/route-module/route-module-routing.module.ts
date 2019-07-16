@@ -11,6 +11,8 @@ import {AccountsComponent} from '../private/accounts/accounts.component';
 import {AdminGuard} from '../private/security/admin.guard';
 import {NotFoundComponent} from '../public/not-found/not-found.component';
 import {UpdateUserComponent} from '../private/update-user/update-user.component';
+import {ProfileComponent} from '../public/profile/profile.component';
+import {UserGuard} from '../public/security/user.guard';
 
 
 const routes: Routes = [
@@ -18,7 +20,8 @@ const routes: Routes = [
   {path: 'login' , component: LoginComponent},
   {path: 'register' , component: RegisterComponent},
   {path: 'home' , component: HomeComponent},
-  {path: 'account' , component: AccountComponent},
+  {path: 'account' , component: AccountComponent, canActivate: [UserGuard]},
+  {path: 'profile' , component: ProfileComponent, canActivate: [UserGuard]},
   {path: 'admin' , component: LayoutComponent , canActivate: [AdminGuard], children : [
       {path: '' , redirectTo: 'dashboard' , pathMatch: 'full' },
       {path: 'users' , component: UsersComponent},
