@@ -10,4 +10,5 @@ export class User {
   email: string;
   createdDate: Date;
   roles: Roles[];
+  enabled: boolean;
 }

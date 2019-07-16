@@ -6,6 +6,8 @@ import {UserService} from '../services/user.service';
 import {User} from '../../public/shared/models/User';
 import {NgxSpinnerService} from 'ngx-spinner';
 
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-users',
@@ -14,7 +16,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class UsersComponent implements OnInit {
 
-  displayedColumns: string[] = ['email', 'firstName', 'lastName', 'createdDate'];
+  displayedColumns: string[] = ['email', 'firstName', 'lastName', 'createdDate', 'enabled', 'action'];
   dataSource: MatTableDataSource<User>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -48,5 +50,75 @@ export class UsersComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  data(user: User) {
+    this.service.markerUser = user;
+  }
+
+  ban(row: User) {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous allez le bannir!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, ban-le!',
+      cancelButtonText: 'Non, garde le'
+    }).then((result) => {
+      if (result.value) {
+        this.service.ban(row._id).subscribe();
+        Swal.fire({
+          type: 'success',
+          title: 'Utilisateur banni',
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          const index: number = this.users.findIndex(d => d === row);
+          this.users[index].enabled = false;
+          this.dataSource = new MatTableDataSource(this.users);
+        });
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Annulé',
+          'utilisateur non modifier :)',
+          'error'
+        );
+      }
+    });
+  }
+
+  restorer(row: User) {
+    Swal.fire({
+      title: 'Êtes-vous sûr?',
+      text: 'Vous allez le restorer!',
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, restore-le!',
+      cancelButtonText: 'Non, garde le'
+    }).then((result) => {
+      if (result.value) {
+        this.service.restorer(row._id).subscribe();
+        Swal.fire({
+          type: 'success',
+          title: 'Utilisateur restoré',
+          showConfirmButton: false,
+          timer: 2000,
+        }).then(() => {
+          const index: number = this.users.findIndex(d => d === row);
+          this.users[index].enabled = true;
+          this.dataSource = new MatTableDataSource(this.users);
+        });
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Annulé',
+          'utilisateur non modifier :)',
+          'error'
+        );
+      }
+    });
+  }
+
+
 }
 

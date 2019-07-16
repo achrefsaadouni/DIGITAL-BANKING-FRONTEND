@@ -7,9 +7,9 @@
     <span class="menu-spacer"></span>
     <div>
 
-      <a mat-button [routerLink]="'/admin//dashboard'"  style="color: white"><mat-icon  style="color: #f28820" aria-hidden="false" aria-label="Example home icon">home</mat-icon>  Dashboard</a>
-      <a mat-button [routerLink]="'/admin//users'"  style="color: white"> <mat-icon  style="color: #f28820" aria-hidden="false" aria-label="Example user icon">supervised_user_circle</mat-icon> Gérer Les Utilisateur </a>
-      <a mat-button [routerLink]="'/admin//accounts'" style="color: white"> <mat-icon style="color: #f28820"  aria-hidden="false" aria-label="Example user icon">account_balance</mat-icon>Gérer Les Comptes </a>
+      <a mat-button [routerLink]="'/admin/dashboard'"  style="color: white"><mat-icon  style="color: #f28820" aria-hidden="false" aria-label="Example home icon">home</mat-icon>  Dashboard</a>
+      <a mat-button [routerLink]="'/admin/users'"  style="color: white"> <mat-icon  style="color: #f28820" aria-hidden="false" aria-label="Example user icon">supervised_user_circle</mat-icon> Gérer Les Utilisateur </a>
+      <a mat-button [routerLink]="'/admin/accounts'" style="color: white"> <mat-icon style="color: #f28820"  aria-hidden="false" aria-label="Example user icon">account_balance</mat-icon>Gérer Les Comptes </a>
       <a mat-button (click)="logout()" style="color: white"> <mat-icon  style="color: #f28820" aria-hidden="false" aria-label="Example user icon">exit_to_app</mat-icon>Déconnexion </a>
 
     </div>
@@ -24,8 +24,8 @@
   <mat-sidenav #sidenav style="background: #21356c">
     <mat-nav-list>
       <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/admin/dashboard'"  style="color: white"><mat-icon style="color: #f28820" aria-hidden="false" aria-label="Example home icon">home</mat-icon>  Dashboard</a>
-      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/admin//users'" style="color: white"> <mat-icon style="color: #f28820" aria-hidden="false" aria-label="Example user icon">supervised_user_circle</mat-icon> Gérer Les Utilisateur </a>
-      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/admin//accounts'" style="color: white"> <mat-icon style="color: #f28820" aria-hidden="false" aria-label="Example user icon">account_balance</mat-icon>Gérer Les Comptes </a>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/admin/users'" style="color: white"> <mat-icon style="color: #f28820" aria-hidden="false" aria-label="Example user icon">supervised_user_circle</mat-icon> Gérer Les Utilisateur </a>
+      <a mat-list-item (click)="sidenav.toggle()" [routerLink]="'/admin/accounts'" style="color: white"> <mat-icon style="color: #f28820" aria-hidden="false" aria-label="Example user icon">account_balance</mat-icon>Gérer Les Comptes </a>
       <a mat-list-item (click)="logout()" class="mt-5"  style="color: white"> <mat-icon aria-hidden="false" style="color: #f28820" aria-label="Example user icon">exit_to_app</mat-icon>Déconnexion </a>
 
 

@@ -9,6 +9,8 @@ import {UsersComponent} from '../private/users/users.component';
 import {DashboardComponent} from '../private/dashboard/dashboard.component';
 import {AccountsComponent} from '../private/accounts/accounts.component';
 import {AdminGuard} from '../private/security/admin.guard';
+import {NotFoundComponent} from '../public/not-found/not-found.component';
+import {UpdateUserComponent} from '../private/update-user/update-user.component';
 
 
 const routes: Routes = [
@@ -20,9 +22,12 @@ const routes: Routes = [
   {path: 'admin' , component: LayoutComponent , canActivate: [AdminGuard], children : [
       {path: '' , redirectTo: 'dashboard' , pathMatch: 'full' },
       {path: 'users' , component: UsersComponent},
+      {path: 'users/update' , component: UpdateUserComponent},
       {path: 'dashboard' , component: DashboardComponent},
       {path: 'accounts' , component: AccountsComponent},
-    ]}
+    ]},
+  {path: '404', component: NotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

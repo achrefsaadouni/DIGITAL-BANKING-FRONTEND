@@ -12,11 +12,12 @@ import { HeaderComponent } from './shared/header/header.component';
 import {AccountComponent} from './account/account.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {MatSnackBarModule} from '@angular/material';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, HomeComponent, FooterComponent, HeaderComponent, AccountComponent],
+  declarations: [LoginComponent, RegisterComponent, HomeComponent, FooterComponent, HeaderComponent, AccountComponent, NotFoundComponent],
   providers: [AuthService],
   exports: [
     FooterComponent,

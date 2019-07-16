@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {User} from '../../public/shared/models/User';
@@ -10,9 +10,42 @@ import {AuthService} from '../../public/shared/auth.service';
 })
 export class UserService {
 
-  constructor(private http: HttpClient , private route: Router, private service: AuthService) { }
+
+  // tslint:disable-next-line:variable-name
+  private _markerUser: User;
+
+  constructor(private http: HttpClient, private route: Router, private service: AuthService) {
+  }
+
   public gelAll() {
-    return  this.http.get<User[]>(
+    return this.http.get<User[]>(
       ApiUri.URI + 'user-service/api/user');
+  }
+
+  public getuser(id) {
+    return this.http.get<User>(
+      ApiUri.URI + 'user-service/api/user/' + id);
+  }
+
+  public ban(id) {
+    return this.http.put(
+      ApiUri.URI + 'user-service/api/user/ban/' + id,
+      null
+    );
+  }
+
+  public restorer(id) {
+    return this.http.put(
+      ApiUri.URI + 'user-service/api/user/unban/' + id,
+      null
+    );
+  }
+
+  get markerUser(): User {
+    return this._markerUser;
+  }
+
+  set markerUser(value: User) {
+    this._markerUser = value;
   }
 }
