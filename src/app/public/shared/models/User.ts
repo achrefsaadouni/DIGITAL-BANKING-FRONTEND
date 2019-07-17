@@ -10,4 +10,5 @@ export class User {
   createdDate: Date;
   roles: Roles[];
   enabled: boolean;
+  activated: boolean;
 }

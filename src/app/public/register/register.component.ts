@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth.service';
 import {User} from '../shared/models/User';
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +16,10 @@ export class RegisterComponent implements OnInit {
   password: string;
   repassword: string;
   user = new User();
-  constructor(private service: AuthService) {
+
+  constructor(private service: AuthService, private route: Router) {
   }
+
   ngOnInit() {
   }
 
@@ -25,8 +29,14 @@ export class RegisterComponent implements OnInit {
     this.user.createdDate = new Date();
     this.user.email = this.username;
     this.user.password = this.password;
+    Swal.fire(
+      'Confirmation',
+      'Vous Devez Activez vore compte a partir de votre adresse Email',
+      'info'
+    ).then((r) => {
+      this.route.navigate(['login']);
+    });
     this.service.registerMe(this.user).subscribe(data => {
-      console.log(data);
       }, err => {
         console.log(err);
       }
