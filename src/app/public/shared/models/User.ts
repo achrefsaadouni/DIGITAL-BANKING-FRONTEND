@@ -3,6 +3,7 @@ import {Compte} from './Compte';
 
 export class User {
   token: string;
+  // tslint:disable-next-line:variable-name
   _id: string;
   firstName: string;
   password: string;

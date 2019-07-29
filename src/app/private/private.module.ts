@@ -18,7 +18,7 @@ import {
   MatRadioModule,
   MatOptionModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule, MatExpansionModule, MatDatepickerModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import { UsersComponent } from './users/users.component';
@@ -28,12 +28,15 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {UserService} from './services/user.service';
 import {UpdateUserComponent} from './update-user/update-user.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DetailAccountComponent } from './detail-account/detail-account.component';
+import {AccountService} from './services/account.service';
+import {SharedService} from './services/shared.service';
 
 
 
 
 @NgModule({
-  declarations: [LayoutComponent, UsersComponent, DashboardComponent, AccountsComponent, UpdateUserComponent],
+  declarations: [LayoutComponent, UsersComponent, DashboardComponent, AccountsComponent, UpdateUserComponent, DetailAccountComponent],
   imports: [
     CommonModule,
     PublicModule,
@@ -55,9 +58,10 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatOptionModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule,
+    MatDatepickerModule
   ],
-  providers:  [
-     UserService]
+  providers:  [UserService, AccountService, SharedService]
 })
 export class PrivateModule { }

@@ -7,6 +7,8 @@ import {User} from '../../public/shared/models/User';
 import {NgxSpinnerService} from 'ngx-spinner';
 
 import Swal from 'sweetalert2';
+import {MatSnackBar} from '@angular/material';
+import {SharedService} from '../services/shared.service';
 
 
 @Component({
@@ -24,19 +26,34 @@ export class UsersComponent implements OnInit {
   private users: User[];
   private loading: boolean;
 
-  constructor(private service: UserService, private spinner: NgxSpinnerService) {
+  constructor(private service: UserService, private spinner: NgxSpinnerService,
+              private snackBar: MatSnackBar, private sharedService: SharedService) {
+    this.sharedService.breadcrumb = ['Dashboard' , 'Utilisateur'];
     this.loading = true;
     this.spinner.show('sp1');
     this.service.gelAll().subscribe(data => {
-      this.users = data;
-      if (this.users) {
-        this.loading = false;
+        this.users = data;
+        if (this.users) {
+          this.loading = false;
+          this.spinner.hide('sp1');
+          this.dataSource = new MatTableDataSource(this.users);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      }, err => {
         this.spinner.hide('sp1');
-        this.dataSource = new MatTableDataSource(this.users);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    });
+        if (err.status === 404) {
+          this.snackBar.open('la page que vous tentiez d\'atteindre sur un site Web est introuvable sur le serveur ', 'ok', {
+            duration: 5000,
+          });
+        }
+        if (err.status === 500) {
+          this.snackBar.open('le serveur peut étre indisponible pour le moment', 'ok', {
+            duration: 5000,
+          });
+        }
+      },
+    );
   }
 
   ngOnInit() {

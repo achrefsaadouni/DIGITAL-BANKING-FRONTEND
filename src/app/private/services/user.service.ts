@@ -3,7 +3,6 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {User} from '../../public/shared/models/User';
 import {ApiUri} from '../../public/shared/api-uri';
-import {AuthService} from '../../public/shared/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class UserService {
   // tslint:disable-next-line:variable-name
   private _markerUser: User;
 
-  constructor(private http: HttpClient, private route: Router, private service: AuthService) {
+  constructor(private http: HttpClient, private route: Router) {
   }
 
   public gelAll() {
