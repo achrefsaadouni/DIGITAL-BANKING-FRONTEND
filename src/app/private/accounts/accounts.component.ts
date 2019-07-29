@@ -3,6 +3,7 @@ import {MatPaginator, MatSnackBar, MatSort, MatTableDataSource} from '@angular/m
 import {NgxSpinnerService} from 'ngx-spinner';
 import {Compte} from '../../public/shared/models/Compte';
 import {AccountService} from '../services/account.service';
+import {SharedService} from '../services/shared.service';
 
 @Component({
   selector: 'app-accounts',
@@ -10,7 +11,7 @@ import {AccountService} from '../services/account.service';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  displayedColumns: string[] = ['nom', 'prenom', 'email', 'revenu_net_mensuel', 'type_compte' , 'etat' , 'action'];
+  displayedColumns: string[] = ['nom', 'prenom', 'email', 'revenu_net_mensuel', 'type_compte', 'etat', 'action'];
   dataSource: MatTableDataSource<Compte>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -19,7 +20,9 @@ export class AccountsComponent implements OnInit {
   private comptes: Compte[];
   private loading: boolean;
 
-  constructor(private service: AccountService, private spinner: NgxSpinnerService, private snackBar: MatSnackBar) {
+  constructor(private service: AccountService, private spinner: NgxSpinnerService,
+              private snackBar: MatSnackBar, private sharedService: SharedService) {
+    this.sharedService.breadcrumb = ['Dashboard', 'Compte'];
     this.loading = true;
     this.spinner.show('sp1');
     this.service.gelAll().subscribe(data => {

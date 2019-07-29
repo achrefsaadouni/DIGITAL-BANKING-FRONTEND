@@ -30,6 +30,7 @@ import {UpdateUserComponent} from './update-user/update-user.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DetailAccountComponent } from './detail-account/detail-account.component';
 import {AccountService} from './services/account.service';
+import {SharedService} from './services/shared.service';
 
 
 
@@ -61,6 +62,6 @@ import {AccountService} from './services/account.service';
     MatExpansionModule,
     MatDatepickerModule
   ],
-  providers:  [UserService, AccountService]
+  providers:  [UserService, AccountService, SharedService]
 })
 export class PrivateModule { }

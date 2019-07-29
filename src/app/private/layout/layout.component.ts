@@ -1,24 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {AuthService} from '../../public/shared/auth.service';
-import {FormControl} from '@angular/forms';
 import {User} from '../../public/shared/models/User';
-import {MatSnackBar} from '@angular/material';
+import {SharedService} from '../services/shared.service';
+
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  mode = new FormControl('over');
   showFiller = false;
   user: User;
-  constructor(private service: AuthService, private spinner: NgxSpinnerService) {
-    this.user = this.service.getUser();
+
+  constructor(private service: AuthService, private spinner: NgxSpinnerService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
   }
+
   logout() {
     this.spinner.show();
     setTimeout(() => {

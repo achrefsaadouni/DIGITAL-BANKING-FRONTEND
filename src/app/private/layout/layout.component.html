@@ -44,14 +44,16 @@
         </button>
       </div>
 
-      <div class="col-lg-4">
+
+      <div class="ol-lg-2">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-            <li class="breadcrumb-item active" aria-current="page">Home</li>
+            <li  *ngFor="let page of sharedService.breadcrumb" class="breadcrumb-item active" aria-current="page">{{ page }}</li>
           </ol>
         </nav>
       </div>
+
+
       <div class="col-lg-6">
         <input type="text"  class="fadeIn second"  placeholder="Recherche..." required="required">
       </div>

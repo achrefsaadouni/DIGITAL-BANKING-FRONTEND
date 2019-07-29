@@ -15,6 +15,6 @@ export class AccountService {
 
   public gelAll() {
     return this.http.get<Compte[]>(
-      ApiUri.URI + 'account-service/api/account');
+      ApiUri.URI + 'account-service/api/accounts');
   }
 }
