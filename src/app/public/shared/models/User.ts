@@ -1,4 +1,5 @@
 import {Roles} from './Roles';
+import {Compte} from './Compte';
 
 export class User {
   token: string;
@@ -9,6 +10,8 @@ export class User {
   email: string;
   createdDate: Date;
   roles: Roles[];
+  comptes: Compte[];
+
   enabled: boolean;
   activated: boolean;
 }

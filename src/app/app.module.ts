@@ -10,6 +10,8 @@ import {RouterModule} from '@angular/router';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {BasicAuthInterceptor} from './public/shared/BasicAuthInterceptor';
+import {MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatStepperModule} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +27,13 @@ import {BasicAuthInterceptor} from './public/shared/BasicAuthInterceptor';
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatStepperModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [ {
     provide: HTTP_INTERCEPTORS,
