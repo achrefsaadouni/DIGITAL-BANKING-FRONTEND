@@ -45,7 +45,9 @@ import {ProfileComponent} from './profile/profile.component';
     MatStepperModule,
     MatDatepickerModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatNativeDateModule,
+    MatIconModule
   ]
 })
 export class PublicModule {
