@@ -18,7 +18,7 @@ import {
   MatRadioModule,
   MatOptionModule,
   MatSelectModule,
-  MatDialogModule, MatExpansionModule, MatDatepickerModule
+  MatDialogModule, MatExpansionModule, MatDatepickerModule, MatCardModule
 } from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import { UsersComponent } from './users/users.component';
@@ -60,7 +60,8 @@ import {SharedService} from './services/shared.service';
     MatSelectModule,
     MatDialogModule,
     MatExpansionModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatCardModule
   ],
   providers:  [UserService, AccountService, SharedService]
 })

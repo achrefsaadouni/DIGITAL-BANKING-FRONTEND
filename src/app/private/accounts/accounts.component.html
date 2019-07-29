@@ -32,14 +32,14 @@
 
 
     <ng-container matColumnDef="type_compte">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type Du Compte </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type Compte </th>
       <td mat-cell *matCellDef="let row" > {{ row.type_compte }} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="etat">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Etat Du Compte </th>
-      <td mat-cell *matCellDef="let row" > {{ row.etat }} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Etat Compte </th>
+      <td mat-cell *matCellDef="let row" [style.color] ="couleur(row)" > {{ row.etat_du_compte }} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">
@@ -49,10 +49,21 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/admin/accounts/detail" routerLinkActive="active" >
-            <mat-icon>more_vert</mat-icon>
+          <button mat-menu-item routerLink="/admin/accounts/detail" routerLinkActive="active" (click)="data(row)">
+            <mat-icon>more</mat-icon>
             <span>Details</span>
           </button>
+
+          <button mat-menu-item *ngIf="row.etat_du_compte === 'pending'" (click)="valider(row)">
+            <mat-icon>done</mat-icon>
+            <span>Accepter</span>
+          </button>
+
+          <button mat-menu-item *ngIf="row.etat_du_compte === 'pending'" (click)="refuser(row)">
+            <mat-icon>cancel</mat-icon>
+            <span>Refuser</span>
+          </button>
+
         </mat-menu>
       </td>
     </ng-container>

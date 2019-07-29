@@ -9,27 +9,35 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
   private userLoggedIn: User;
-  constructor(private http: HttpClient , private route: Router) { }
+
+  constructor(private http: HttpClient, private route: Router) {
+  }
+
+
   public authenticateMe(email: string, password: string) {
-    const body = { email, password };
-    return  this.http.post<User>(
+    const body = {email, password};
+    return this.http.post<User>(
       ApiUri.URI + 'api/auth/login',
       body,
     );
   }
+
   public registerMe(user: User) {
-    return  this.http.post(
+    return this.http.post(
       ApiUri.URI + 'api/auth/register',
       user,
     );
   }
+
   public logout() {
     this.userLoggedIn = null;
     return this.route.navigate(['login']);
   }
+
   getUser() {
     return this.userLoggedIn;
   }
+
   setUser(user: User) {
     this.userLoggedIn = user;
   }

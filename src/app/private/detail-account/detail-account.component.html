@@ -2,65 +2,289 @@
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Personal data
+        Informations générales
       </mat-panel-title>
       <mat-panel-description>
-        Type your name and age
+        Informations générales du client
         <mat-icon>account_circle</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
     <mat-form-field>
-      <input matInput placeholder="First name">
+      <input matInput disabled placeholder="Nom" value="{{ compte.nom }}">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="number" min="1" placeholder="Age">
+      <input matInput disabled placeholder="Prénom" value="{{ compte.prenom }}">
     </mat-form-field>
 
+
+    <mat-form-field *ngIf="compte.gender === 'Madame'">
+      <input matInput disabled placeholder="Nom de jeune fille " value="{{ compte.nomJF }}">
+    </mat-form-field>
+
+    <br>
+    <mat-form-field>
+      <input matInput disabled placeholder="Email" value="{{ compte.email }}">
+    </mat-form-field>
+
+      <mat-form-field *ngIf="compte.code_client">
+        <input matInput disabled placeholder="Code client" value="{{ compte.code_client }}">
+      </mat-form-field>
+
+      <mat-form-field *ngIf="compte.credit_immediat">
+        <input matInput disabled placeholder="Crédit immediat" value="{{ compte.credit_immediat }}">
+      </mat-form-field>
+
     <mat-action-row>
-      <button mat-button color="primary" (click)="nextStep()">Next</button>
+      <button mat-button color="primary" (click)="nextStep()">Suivant</button>
     </mat-action-row>
   </mat-expansion-panel>
 
   <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Destination
+        Coordonnées
       </mat-panel-title>
       <mat-panel-description>
-        Type the country name
+        Coordonnées du client
         <mat-icon>map</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
     <mat-form-field>
-      <input matInput placeholder="Country">
+      <input matInput disabled placeholder="Pays" value="{{ compte.pays }}">
+    </mat-form-field>
+
+
+    <mat-form-field >
+      <input matInput disabled placeholder="Adresse" value="{{ compte.adresse }}">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput disabled placeholder="Gouvernorat" value="{{ compte.gouvernorat }}">
+    </mat-form-field>
+
+
+    <mat-form-field >
+      <input matInput disabled placeholder="Téléphone Mobile" value="{{ compte.tel_mobile }}">
+    </mat-form-field>
+    <br>
+    <mat-form-field >
+      <input matInput disabled placeholder="Téléphone Domicile" value="{{ compte.tel_domicile }}">
+    </mat-form-field>
+
+    <mat-form-field >
+      <input matInput disabled placeholder="Situation Domicile" value="{{ compte.situationDomicile }}">
     </mat-form-field>
 
     <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">Next</button>
+      <button mat-button color="primary" (click)="nextStep()">Précedant</button>
+      <button mat-button color="warn" (click)="prevStep()">Suivant</button>
     </mat-action-row>
   </mat-expansion-panel>
 
   <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Day of the trip
+        Etat civil
       </mat-panel-title>
       <mat-panel-description>
-        Inform the date you wish to travel
-        <mat-icon>date_range</mat-icon>
+        Etat civil du client
+        <mat-icon>assignment_ind</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
 
+    <mat-form-field>
+      <input matInput disabled placeholder="Date de naissance" value="{{ compte.date_naissance | date : 'dd-MM-y' }}">
+    </mat-form-field>
+
+
+    <mat-form-field >
+      <input matInput disabled placeholder="Pays de naissance" value="{{ compte.pays_naissance }}">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput disabled placeholder="Gouvernorat de naissance" value="{{ compte.gouvernorat_naissance }}">
+    </mat-form-field>
+
+
+    <mat-form-field >
+      <input matInput disabled placeholder="Nationalité" value="{{ compte.nationalite }}">
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf="compte.seconde_nationalite">
+      <input matInput disabled placeholder="Seconde nationalite" value="{{ compte.seconde_nationalite }}">
+    </mat-form-field>
+
 
     <mat-action-row>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">End</button>
+      <button mat-button color="primary" (click)="nextStep()">Précedant</button>
+      <button mat-button color="warn" (click)="prevStep()">Suivant</button>
     </mat-action-row>
   </mat-expansion-panel>
 
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Situation
+      </mat-panel-title>
+      <mat-panel-description>
+        Situation (familiale, professionnelle) du client
+        <mat-icon>wc</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <mat-form-field>
+      <input matInput disabled placeholder="Situation familiale" value="{{ compte.situation_familiale }}">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="compte.domaine">
+      <input matInput disabled placeholder="Domaine" value="{{ compte.domaine }}">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="compte.profession">
+      <input matInput disabled placeholder="Profession" value="{{ compte.profession }}">
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Précedant</button>
+      <button mat-button color="warn" (click)="prevStep()">Suivant</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Type de compte souhaité
+      </mat-panel-title>
+      <mat-panel-description>
+        Personne morale  / professionnel
+        <mat-icon>account_balance_wallet</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field *ngIf="compte.date_creation">
+      <input matInput disabled placeholder="Date de création entreprise" value="{{ compte.date_creation | date: 'dd-MM-y' }}">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="compte.fin_exercice">
+      <input matInput disabled placeholder="Date de fin d'exercice" value="{{ compte.fin_exercice | date: 'dd-MM-y' }}">
+    </mat-form-field>
+
+
+
+    <mat-form-field *ngIf="compte.code_activite">
+      <input matInput disabled placeholder="Code activité" value="{{ compte.code_activite }}">
+    </mat-form-field>
+
+        <mat-form-field *ngIf="compte.chiffre_affaire">
+      <input matInput disabled placeholder="Chiffre d’affaires  annuel " value="{{ compte.chiffre_affaire }}">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="compte.nbr_salaries">
+      <input matInput disabled placeholder="Nombre de salariés" value="{{ compte.nbr_salaries }}">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="compte.payes_activite">
+      <input matInput disabled placeholder="Payes d’activité" value="{{ compte.payes_activite }}">
+    </mat-form-field>
+
+
+    <mat-form-field *ngIf="compte.revenu_net_mensuel">
+      <input matInput disabled placeholder="Revenu net mensuel" value="{{ compte.revenu_net_mensuel }}">
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Précedant</button>
+      <button mat-button color="warn" (click)="prevStep()">Suivant</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 5" (opened)="setStep(5)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Service
+      </mat-panel-title>
+      <mat-panel-description>
+        Service choisie par le client
+        <mat-icon>monetization_on</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <mat-form-field>
+      <input matInput disabled placeholder="Type service" value="{{ compte.type_service }}">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput disabled placeholder="Type carte" value="{{ compte.type_carte }}">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput disabled placeholder="Type alimentation" value="{{ compte.type_alimentation }}">
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Précedant</button>
+      <button mat-button color="warn" (click)="prevStep()">Suivant</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 6" (opened)="setStep(6)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Justificatifs
+      </mat-panel-title>
+      <mat-panel-description>
+        Justificatifs du client
+        <mat-icon>folder</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Fiche de paie</mat-card-title>
+      </mat-card-header>
+      <a href="{{ compte.fiche_paie }}"> <img mat-card-image src="{{ compte.fiche_paie }}" alt="image du fiche de paie"></a>
+    </mat-card>
+
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Facture avec adresse</mat-card-title>
+      </mat-card-header>
+      <a href="{{ compte.facture }}"> <img mat-card-image src="{{ compte.facture }}" alt="image de la facture"></a>
+    </mat-card>
+
+
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>CIN</mat-card-title>
+      </mat-card-header>
+      <a href="{{ compte.copie_CIN }}"> <img mat-card-image src="{{ compte.copie_CIN }}" alt="image du CIN"></a>
+    </mat-card>
+
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Précedant</button>
+      <button mat-button color="primary" (click)="nextStep()">Fin</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <br>
+  <div class="row" *ngIf="compte.etat_du_compte === 'pending'">
+    <div class="offset-lg-2 col-lg-4">
+  <button mat-raised-button style="background-color: #004579; color: white" (click)="valider()">Valider</button>
+    </div>
+    <div class="offset-lg-2 col-lg-4">
+  <button mat-raised-button style="background-color: #f18a01;color: white;" (click)="refuser()">Refuser</button>
+  </div>
+  </div>
 </mat-accordion>

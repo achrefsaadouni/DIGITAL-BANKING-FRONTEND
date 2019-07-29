@@ -14,6 +14,7 @@ export class LayoutComponent implements OnInit {
   user: User;
 
   constructor(private service: AuthService, private spinner: NgxSpinnerService, private sharedService: SharedService) {
+   this.user = this.service.getUser();
   }
 
   ngOnInit() {

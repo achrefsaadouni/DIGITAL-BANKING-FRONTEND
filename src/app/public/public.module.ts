@@ -25,7 +25,8 @@ import {ProfileComponent} from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, HomeComponent, FooterComponent, HeaderComponent, AccountComponent, NotFoundComponent, ProfileComponent],
+  declarations: [LoginComponent, RegisterComponent, HomeComponent, FooterComponent,
+    HeaderComponent, AccountComponent, NotFoundComponent, ProfileComponent],
   providers: [AuthService],
   exports: [
     FooterComponent,

@@ -9,6 +9,8 @@ import {ApiUri} from '../../public/shared/api-uri';
   providedIn: 'root'
 })
 export class AccountService {
+  // tslint:disable-next-line:variable-name
+  private _markedAccount: Compte;
 
   constructor(private http: HttpClient, private route: Router) {
   }
@@ -16,5 +18,18 @@ export class AccountService {
   public gelAll() {
     return this.http.get<Compte[]>(
       ApiUri.URI + 'account-service/api/accounts');
+  }
+  public traiter(id, etat) {
+    return this.http.put(
+      ApiUri.URI + 'account-service/api/account/' + id + '/' + etat,
+      null
+    );
+  }
+  get markedAccount(): Compte {
+    return this._markedAccount;
+  }
+
+  set markedAccount(value: Compte) {
+    this._markedAccount = value;
   }
 }
