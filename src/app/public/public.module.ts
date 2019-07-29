@@ -11,7 +11,6 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import {AccountComponent} from './account/account.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {MatButtonModule, MatCardModule, MatSnackBarModule} from '@angular/material';
 import {
   MatButtonModule, MatDatepickerModule,
   MatFormFieldModule,
