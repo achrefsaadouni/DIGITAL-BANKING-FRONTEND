@@ -3,6 +3,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {AuthService} from '../../public/shared/auth.service';
 import {FormControl} from '@angular/forms';
 import {User} from '../../public/shared/models/User';
+import {MatSnackBar} from '@angular/material';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',

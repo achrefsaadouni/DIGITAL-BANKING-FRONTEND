@@ -1,40 +1,50 @@
-<mat-sidenav-container style="height: 100%" autosize >
-  <mat-sidenav #sidenav mode="side" opened="true" class = "menu" >
-    <mat-nav-list >
+<mat-sidenav-container style="height: 100%" autosize>
+  <mat-sidenav #sidenav mode="side" opened="true" class="menu">
+    <mat-nav-list>
       <a mat-list-item>
         <img src="../assets/img/biat.png" class="img-fluid rounded-circle ml-2" style=" width:30px;height: 30px"/>
         <span class="ml-3" *ngIf="showFiller" style="color: #cecece">Biat</span>
       </a>
       <mat-divider class="ml-2 mr-2" style="background-color: #cecece"></mat-divider>
 
-      <br> <a mat-list-item    style="color: #cecece"><h5 class="capitalize " *ngIf="showFiller">{{user.firstName}} {{user.lastName}}</h5></a><br>
+      <br> <a mat-list-item style="color: #cecece"><h5 class="capitalize "
+                                                       *ngIf="showFiller">{{user.firstName}} {{user.lastName}}</h5>
+    </a><br>
 
-      <mat-divider class="ml-2 mr-2" style="background-color: #cecece"></mat-divider><br>
+      <mat-divider class="ml-2 mr-2" style="background-color: #cecece"></mat-divider>
+      <br>
 
 
       <div style="padding: 0px 10px;">
         <button mat-icon-button (click)="showFiller = !showFiller">
-          <mat-icon  style="color: #cecece" *ngIf="showFiller">arrow_left</mat-icon>
-          <mat-icon  style="color: #cecece" *ngIf="!showFiller">arrow_right</mat-icon>
+          <mat-icon style="color: #cecece" *ngIf="showFiller">arrow_left</mat-icon>
+          <mat-icon style="color: #cecece" *ngIf="!showFiller">arrow_right</mat-icon>
         </button>
       </div>
 
-      <a mat-list-item  [routerLink]="'/admin/dashboard'" routerLinkActive="active" style="color: #cecece"><mat-icon style="color: #cecece" aria-hidden="false" aria-label="Example home icon">home</mat-icon>  <span class="ml-3" *ngIf="showFiller">Dashboard</span></a>
-      <a mat-list-item  [routerLink]="'/admin/users'" routerLinkActive="active" style="color: #cecece"> <mat-icon style="color: #cecece" aria-hidden="false" aria-label="Example user icon">supervised_user_circle</mat-icon> <span class="ml-3" *ngIf="showFiller">Gérer Les Utilisateur </span></a>
-      <a mat-list-item  [routerLink]="'/admin/accounts'" routerLinkActive="active" style="color: #cecece"> <mat-icon style="color: #cecece" aria-hidden="false" aria-label="Example user icon">account_balance</mat-icon><span class="ml-3" *ngIf="showFiller">Gérer Les Comptes </span></a>
+      <a mat-list-item [routerLink]="'/admin/dashboard'" routerLinkActive="active" style="color: #cecece">
+        <mat-icon style="color: #cecece" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+        <span class="ml-3" *ngIf="showFiller">Dashboard</span></a>
+      <a mat-list-item [routerLink]="'/admin/users'" routerLinkActive="active" style="color: #cecece">
+        <mat-icon style="color: #cecece" aria-hidden="false" aria-label="Example user icon">supervised_user_circle
+        </mat-icon>
+        <span class="ml-3" *ngIf="showFiller">Gérer Les Utilisateur </span></a>
+      <a mat-list-item [routerLink]="'/admin/accounts'" routerLinkActive="active" style="color: #cecece">
+        <mat-icon style="color: #cecece" aria-hidden="false" aria-label="Example user icon">account_balance</mat-icon>
+        <span class="ml-3" *ngIf="showFiller">Gérer Les Comptes </span></a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="p-4">
     <div class="row ml-5 mb-5">
       <div class="col-lg-1">
-      <button mat-mini-fab style="background-color: white">
-        <mat-icon *ngIf="sidenav.opened" style="color: #000;: grey" (click)="sidenav.toggle()">more_vert</mat-icon>
-        <mat-icon *ngIf="!sidenav.opened" style="color: #000;: grey" (click)="sidenav.toggle()">menu</mat-icon>
-      </button>
+        <button mat-mini-fab style="background-color: white">
+          <mat-icon *ngIf="sidenav.opened" style="color: #000;: grey" (click)="sidenav.toggle()">more_vert</mat-icon>
+          <mat-icon *ngIf="!sidenav.opened" style="color: #000;: grey" (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
       </div>
 
-      <div class="ol-lg-2">
+      <div class="col-lg-4">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
@@ -42,30 +52,41 @@
           </ol>
         </nav>
       </div>
+      <div class="col-lg-6">
+        <input type="text"  class="fadeIn second"  placeholder="Recherche..." required="required">
+      </div>
 
-
-      <div class="offset-lg-8 col-lg-1">
+      <div class="col-lg-1">
         <button mat-mini-fab style="background-color: white">
           <mat-icon style="color: #000;: grey" (click)="logout()">exit_to_app</mat-icon>
         </button>
       </div>
     </div>
     <div class="ml-5">
-    <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
 
-
 <app-footer></app-footer>
 
 <ngx-spinner
-  bdOpacity = 0.9
-  bdColor = "#21356c"
-  size = "large"
-  color = "#f28820"
-  type = "square-loader"
-  [fullScreen] = "true">
-  <p style="color: white" > </p>
+  bdOpacity=0.9
+  bdColor="#21356c"
+  size="large"
+  color="#f28820"
+  type="square-loader"
+  [fullScreen]="true">
+  <p style="color: white"></p>
+</ngx-spinner>
+
+<ngx-spinner name="sp1"
+             bdOpacity=0.9
+             bdColor=""
+             size="medium"
+             color="#f28820"
+             type="ball-spin-fade-rotating"
+             [fullScreen]="true">
+  <p style="color: #f28820"> Chargement... </p>
 </ngx-spinner>

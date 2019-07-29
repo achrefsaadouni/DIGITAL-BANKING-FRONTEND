@@ -1,1 +1,79 @@
-<p>accounts works!</p>
+<mat-form-field [hidden]="loading" class="col-lg-3">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer">
+</mat-form-field>
+
+<div class="mat-elevation-z8" [hidden]="loading">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+      <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="prenom">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prenom  </th>
+      <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>  Email </th>
+      <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="revenu_net_mensuel">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Revenu Net Mensuel </th>
+      <td mat-cell *matCellDef="let row" > {{ row.revenu_net_mensuel }} </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="type_compte">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type Du Compte </th>
+      <td mat-cell *matCellDef="let row" > {{ row.type_compte }} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="etat">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Etat Du Compte </th>
+      <td mat-cell *matCellDef="let row" > <span *ngIf="row.enabled" style="color: green">Accepter</span> <span *ngIf="!row.enabled" style="color: red">En Attendant</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Menu </th>
+      <td mat-cell *matCellDef="let row" >
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/admin/accounts/detail" routerLinkActive="active" >
+            <mat-icon>more_vert</mat-icon>
+            <span>Details</span>
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<ngx-spinner name="sp1"
+             bdOpacity = 0.9
+             bdColor = ""
+             size = "medium"
+             color = "#f28820"
+             type = "ball-spin-fade-rotating"
+             [fullScreen] = "true"
+>
+  <p style="color: white" > Chargement... </p>
+</ngx-spinner>
+
+
+

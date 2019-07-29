@@ -13,6 +13,7 @@ import {NotFoundComponent} from '../public/not-found/not-found.component';
 import {UpdateUserComponent} from '../private/update-user/update-user.component';
 import {ProfileComponent} from '../public/profile/profile.component';
 import {UserGuard} from '../public/security/user.guard';
+import {DetailAccountComponent} from '../private/detail-account/detail-account.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
       {path: 'users/update' , component: UpdateUserComponent},
       {path: 'dashboard' , component: DashboardComponent},
       {path: 'accounts' , component: AccountsComponent},
+      {path: 'accounts/detail' , component: DetailAccountComponent},
     ]},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}
