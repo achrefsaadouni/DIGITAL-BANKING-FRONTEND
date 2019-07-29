@@ -125,3 +125,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .example {
   color: #f28820;
 }
+.capitalize { text-transform: capitalize; }

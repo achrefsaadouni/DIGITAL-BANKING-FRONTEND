@@ -2029,3 +2029,10 @@ p {
 #navbar .navbar {
   margin-bottom: 20px;
 }
+.example-card {
+  max-width: 400px;
+}
+.example-header-image {
+  background-image: url('../../../assets/img/biat.png');
+  background-size: cover;
+}

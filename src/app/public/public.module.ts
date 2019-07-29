@@ -11,7 +11,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import {AccountComponent} from './account/account.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
-import {MatSnackBarModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatSnackBarModule} from '@angular/material';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -30,7 +30,9 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     NgbCarouselModule,
     NgxSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class PublicModule { }
