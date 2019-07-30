@@ -15,4 +15,9 @@ export class AccountService {
       ApiUri.URI + 'account-service/api/accounts/simpleUser/' + email,
     );
   }
+    public createAccount(compte: Compte) {
+  return this.http.post(
+    ApiUri.URI + 'account-service/api/accounts/simpleUser', compte,
+  );
+
 }

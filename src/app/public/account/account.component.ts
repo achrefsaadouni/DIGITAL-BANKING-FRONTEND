@@ -2,7 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Compte} from '../shared/models/Compte';
 import {User} from '../shared/models/User';
-
+import {Router} from '@angular/router';
+import {AccountService} from '../services/account.service';
+import {AuthService} from '../shared/auth.service';
+import {finalize} from 'rxjs/operators';
+import {AngularFireStorage} from '@angular/fire/storage';
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -11,7 +15,7 @@ import {User} from '../shared/models/User';
 export class AccountComponent implements OnInit {
 
 
-@ViewChild('step', {static: false}) step;
+  @ViewChild('step', {static: false}) step;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
@@ -22,16 +26,29 @@ export class AccountComponent implements OnInit {
   compte = new Compte();
   submitted = false;
   public selectCivilite: string;
+  selectedValue: string;
+  const; // @ts-ignore
+  // @ts-ignore
+  countryList = require('country-list');
+  countrys = this.countryList.getNames();
+  imgSrc1: string;
+  selectedImage1: any = null;
+  imgSrc2: string;
+  selectedImage2: any = null;
+  imgSrc3: string;
+  selectedImage3: any = null;
 
-  constructor(private _formBuilder: FormBuilder) { }
+
+  // tslint:disable-next-line:variable-name max-line-length
+  constructor(private _formBuilder: FormBuilder, private service: AccountService, private route: Router, private user: AuthService, private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       gender: ['', Validators.required],
-      nomJF: ['', Validators.required],
-      code_client: ['', Validators.required],
+      nomJF: [''],
+      code_client: [''],
       selectCredit: ['', Validators.required],
       selectClient: ['', Validators.required]
 
@@ -46,10 +63,10 @@ export class AccountComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       birthDate: ['', Validators.required],
-      paysNaissance: ['', Validators.required],
       gouvernoratNaissance: ['', Validators.required],
+      selectCountry: ['', Validators.required],
       nationalite: ['', Validators.required],
-      secondeNationalite: ['', Validators.required]
+      secondeNationalite: ['']
     });
     this.fourthFormGroup = this._formBuilder.group({
       selectSituationFamiliale: ['', Validators.required],
@@ -68,11 +85,45 @@ export class AccountComponent implements OnInit {
     });
     this.seventhFormGroup = this._formBuilder.group({
       selectCarte: ['', Validators.required],
-      versement: ['', Validators.required]
-    });
+      copieCIN: ['', Validators.required],
+      fichePaie: ['', Validators.required],
+      facture: ['', Validators.required]
+  });
   }
 
+
+  fileSelected1(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc1 = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage1 = event.target.files[0];
+    } else {
+      this.selectedImage1 = null;
+    }
+  }
+  fileSelected2(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc2 = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage2 = event.target.files[0];
+    } else {
+      this.selectedImage2 = null;
+    }
+  }
+  fileSelected3(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc3 = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage3 = event.target.files[0];
+    } else {
+      this.selectedImage3 = null;
+    }
+  }
   SubmitCompte() {
+    this.compte.email = this.user.getUser().email;
 
     // first form groupe
     this.compte.nom = this.firstFormGroup.value.nom;
@@ -91,7 +142,7 @@ export class AccountComponent implements OnInit {
     // third form groupe
     this.compte.date_naissance = this.thirdFormGroup.value.birthDate;
     this.compte.gouvernorat_naissance = this.thirdFormGroup.value.gouvernoratNaissance;
-    this.compte.pays_naissance = this.thirdFormGroup.value.paysNaissance;
+    this.compte.pays_naissance = this.thirdFormGroup.value.selectCountry;
     this.compte.nationalite = this.thirdFormGroup.value.nationalite;
     this.compte.seconde_nationalite = this.thirdFormGroup.value.secondeNationalite;
     // fourth form groupe
@@ -105,6 +156,38 @@ export class AccountComponent implements OnInit {
     this.compte.type_service = this.sixthFormGroup.value.selectServices;
     // seventh form groupe
     this.compte.type_carte = this.seventhFormGroup.value.selectCarte;
+    if (!(this.selectedImage1 == null)) {
+      // tslint:disable-next-line:prefer-const
+      let filePath1 = `test/${this.selectedImage1.name}_${new Date()}`;
+      const fileRef = this.storage.ref(filePath1);
+      this.compte.copie_CIN = filePath1;
+      this.storage.upload(filePath1, this.selectedImage1).snapshotChanges().pipe().subscribe();
+    }
+    if (!(this.selectedImage2 == null)) {
+      // tslint:disable-next-line:prefer-const
+      let filePath2 = `test/${this.selectedImage2.name}_${new Date()}`;
+      this.compte.fiche_paie = filePath2;
+      const fileRef = this.storage.ref(filePath2);
+      this.storage.upload(filePath2, this.selectedImage2).snapshotChanges().pipe().subscribe();
+    }
+    if (!(this.selectedImage3 == null)) {
+      // tslint:disable-next-line:prefer-const
+      let filePath3 = `test/${this.selectedImage3.name}_${new Date()}`;
+      this.compte.facture = filePath3;
+      const fileRef = this.storage.ref(filePath3);
+      this.storage.upload(filePath3, this.selectedImage3).snapshotChanges().pipe()
+      .subscribe();
+    }
+
+    // type du compte
+    this.compte.type_compte = 'professionel';
+    console.log(this.compte);
+
+    this.service.createAccount(this.compte).subscribe(data => {
+      }, err => {
+        console.log(err);
+      }
+    );
 
   }
 }
