@@ -16,7 +16,7 @@ export class AccountService {
 
   public createAccount(compte: Compte) {
   return this.http.post(
-    ApiUri.URI + 'account-service/account', compte,
+    ApiUri.URI + 'account-service/accounts/simpleUser', compte,
   );
 }
 
