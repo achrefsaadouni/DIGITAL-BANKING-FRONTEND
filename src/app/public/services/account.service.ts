@@ -8,16 +8,19 @@ import {Compte} from '../shared/models/Compte';
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getAccounts(email) {
     return this.http.get<Compte[]>(
       ApiUri.URI + 'account-service/api/accounts/simpleUser/' + email,
     );
   }
-    public createAccount(compte: Compte) {
-  return this.http.post(
-    ApiUri.URI + 'account-service/api/accounts/simpleUser', compte,
-  );
 
+  public createAccount(compte: Compte) {
+    return this.http.post(
+      ApiUri.URI + 'account-service/api/accounts/simpleUser', compte,
+    );
+
+  }
 }

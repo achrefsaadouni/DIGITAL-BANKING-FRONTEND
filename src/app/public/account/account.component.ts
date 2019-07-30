@@ -7,6 +7,7 @@ import {AccountService} from '../services/account.service';
 import {AuthService} from '../shared/auth.service';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -40,7 +41,8 @@ export class AccountComponent implements OnInit {
 
 
   // tslint:disable-next-line:variable-name max-line-length
-  constructor(private _formBuilder: FormBuilder, private service: AccountService, private route: Router, private user: AuthService, private storage: AngularFireStorage) { }
+  constructor(private _formBuilder: FormBuilder, private service: AccountService, private route: Router, private user: AuthService, private storage: AngularFireStorage) {
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -88,7 +90,7 @@ export class AccountComponent implements OnInit {
       copieCIN: ['', Validators.required],
       fichePaie: ['', Validators.required],
       facture: ['', Validators.required]
-  });
+    });
   }
 
 
@@ -102,6 +104,7 @@ export class AccountComponent implements OnInit {
       this.selectedImage1 = null;
     }
   }
+
   fileSelected2(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -112,6 +115,7 @@ export class AccountComponent implements OnInit {
       this.selectedImage2 = null;
     }
   }
+
   fileSelected3(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
@@ -122,6 +126,7 @@ export class AccountComponent implements OnInit {
       this.selectedImage3 = null;
     }
   }
+
   SubmitCompte() {
     this.compte.email = this.user.getUser().email;
 
@@ -160,34 +165,54 @@ export class AccountComponent implements OnInit {
       // tslint:disable-next-line:prefer-const
       let filePath1 = `test/${this.selectedImage1.name}_${new Date()}`;
       const fileRef = this.storage.ref(filePath1);
-      this.compte.copie_CIN = filePath1;
-      this.storage.upload(filePath1, this.selectedImage1).snapshotChanges().pipe().subscribe();
+      this.storage.upload(filePath1, this.selectedImage1).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.compte.copie_CIN = url;
+
+          });
+        })
+      ).subscribe();
     }
     if (!(this.selectedImage2 == null)) {
       // tslint:disable-next-line:prefer-const
       let filePath2 = `test/${this.selectedImage2.name}_${new Date()}`;
-      this.compte.fiche_paie = filePath2;
       const fileRef = this.storage.ref(filePath2);
-      this.storage.upload(filePath2, this.selectedImage2).snapshotChanges().pipe().subscribe();
+      this.storage.upload(filePath2, this.selectedImage2).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.compte.fiche_paie = url;
+
+          });
+        })
+      ).subscribe();
     }
     if (!(this.selectedImage3 == null)) {
       // tslint:disable-next-line:prefer-const
       let filePath3 = `test/${this.selectedImage3.name}_${new Date()}`;
-      this.compte.facture = filePath3;
       const fileRef = this.storage.ref(filePath3);
-      this.storage.upload(filePath3, this.selectedImage3).snapshotChanges().pipe()
-      .subscribe();
+      this.storage.upload(filePath3, this.selectedImage3).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.compte.facture = url;
+          });
+        })
+      )
+        .subscribe();
     }
 
     // type du compte
     this.compte.type_compte = 'professionel';
     console.log(this.compte);
 
-    this.service.createAccount(this.compte).subscribe(data => {
-      }, err => {
-        console.log(err);
-      }
-    );
+    setTimeout(() => {
+      this.service.createAccount(this.compte).subscribe(data => {
+        }, err => {
+          console.log(err);
+        }
+      );
+    }, 10000);
+
 
   }
 }
