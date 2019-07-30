@@ -11,8 +11,6 @@ export class User {
   email: string;
   createdDate: Date;
   roles: Roles[];
-  comptes: Compte[];
-
   enabled: boolean;
   activated: boolean;
 }

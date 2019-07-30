@@ -27,7 +27,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {UserService} from './services/user.service';
 import {UpdateUserComponent} from './update-user/update-user.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DetailAccountComponent } from './detail-account/detail-account.component';
 import {AccountService} from './services/account.service';
 import {SharedService} from './services/shared.service';
@@ -61,7 +61,8 @@ import {SharedService} from './services/shared.service';
     MatDialogModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ],
   providers:  [UserService, AccountService, SharedService]
 })

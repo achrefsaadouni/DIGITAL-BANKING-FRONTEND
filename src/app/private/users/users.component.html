@@ -49,7 +49,7 @@
             <mat-icon>restore</mat-icon>
             <span>Restorer</span>
           </button>
-          <button mat-menu-item *ngIf="row.enabled" (click)="ban(row)">
+          <button mat-menu-item *ngIf="row.enabled && row.id !== authservice.getUser()._id" (click)="ban(row)">
             <mat-icon>cancel</mat-icon>
             <span>Bannir</span>
           </button>
