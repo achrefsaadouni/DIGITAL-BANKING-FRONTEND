@@ -12,7 +12,7 @@
     <div class="col-md-12 order-md-1">
 
 
-      <mat-vertical-stepper  #stepper>
+      <mat-vertical-stepper  #stepper linear >
         <mat-step #step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Informations générales</ng-template>
@@ -209,7 +209,7 @@
             <label> quels services souhaitez-vous utiliser ?</label>
 
             <mat-radio-group formControlName="selectServices" required>
-              <mat-radio-button value="prElevements">Prélèvements</mat-radio-button>
+              <mat-radio-button value="prelevements">Prélèvements</mat-radio-button>
               <mat-radio-button value="creditConsommation">Crédit consommation</mat-radio-button>
               <mat-radio-button value="creditImmobilier">Crédit immobilier</mat-radio-button>
               <mat-radio-button value="virements">Virements</mat-radio-button>
@@ -259,7 +259,9 @@
 
         <mat-step>
           <ng-template matStepLabel>Valider</ng-template>
-          <button class="btn btn-primary btn-lg btn-block" (click)="SubmitCompte()" >Valider</button>
+          <button
+            [disabled]="!(firstFormGroup.valid && secondFormGroup.valid && thirdFormGroup.valid && fourthFormGroup.valid && fifthFormGroup.valid && sixthFormGroup.valid && seventhFormGroup.valid)"
+            class="btn btn-primary btn-lg btn-block" (click)="SubmitCompte()" >Valider</button>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="stepper.reset()">Reset</button>

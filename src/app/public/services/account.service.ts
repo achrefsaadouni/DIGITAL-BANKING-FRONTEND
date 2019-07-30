@@ -8,7 +8,8 @@ import {Compte} from '../shared/models/Compte';
 })
 export class AccountService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getAccounts(email) {
     return this.http.get<Compte[]>(

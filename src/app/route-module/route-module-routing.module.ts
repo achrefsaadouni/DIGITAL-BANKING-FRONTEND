@@ -14,6 +14,8 @@ import {UpdateUserComponent} from '../private/update-user/update-user.component'
 import {ProfileComponent} from '../public/profile/profile.component';
 import {UserGuard} from '../public/security/user.guard';
 import {DetailAccountComponent} from '../private/detail-account/detail-account.component';
+import {ChooseAccountComponent} from '../public/choose-account/choose-account.component';
+import {CompanyAccountComponent} from '../public/company-account/company-account.component';
 
 
 const routes: Routes = [
@@ -21,8 +23,10 @@ const routes: Routes = [
   {path: 'login' , component: LoginComponent},
   {path: 'register' , component: RegisterComponent},
   {path: 'home' , component: HomeComponent},
-  {path: 'account' , component: AccountComponent, canActivate: [UserGuard]},
+  {path: 'professional-account' , component: AccountComponent, canActivate: [UserGuard]},
   {path: 'profile' , component: ProfileComponent, canActivate: [UserGuard]},
+  {path: 'account-creation' , component: ChooseAccountComponent, canActivate: [UserGuard]},
+  {path: 'company-account' , component: CompanyAccountComponent, canActivate: [UserGuard]},
   {path: 'admin' , component: LayoutComponent , canActivate: [AdminGuard], children : [
       {path: '' , redirectTo: 'dashboard' , pathMatch: 'full' },
       {path: 'users' , component: UsersComponent},
