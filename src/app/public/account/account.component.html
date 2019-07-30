@@ -12,7 +12,7 @@
     <div class="col-md-12 order-md-1">
 
 
-      <mat-horizontal-stepper #stepper>
+      <mat-vertical-stepper  #stepper>
         <mat-step #step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Informations générales</ng-template>
@@ -20,8 +20,8 @@
               <input matInput   placeholder="Nom" formControlName="nom"  required>
             </mat-form-field>
             <br>
-            <mat-form-field>
-              <input matInput  placeholder="Prenom"  formControlName="prenom" required>
+            <mat-form-field >
+              <input matInput  placeholder="Prenom"  formControlName="prenom" required >
             </mat-form-field>
             <br>
             <label >Civilité</label>
@@ -29,8 +29,9 @@
             <mat-radio-group formControlName="gender" required>
               <mat-radio-button value="Monsieur">Monsieur</mat-radio-button>
               <mat-radio-button value="Madame">Madame</mat-radio-button>
+              <mat-radio-button value="Mlle">Mlle</mat-radio-button>
             </mat-radio-group>
-            <mat-form-field [hidden]="!(firstFormGroup.value.gender === 'Madame')">
+            <mat-form-field [hidden]="!(firstFormGroup.value.gender === 'Madame')" >
               <input matInput   placeholder="Nom de jeune fille" formControlName="nomJF">
             </mat-form-field>
             <br>
@@ -110,7 +111,19 @@
               <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
               <mat-datepicker #dp3 disabled="false"></mat-datepicker>
             </mat-form-field>
-
+            <br>
+            <mat-form-field>
+              <mat-label>Choisir votre pays de naissance</mat-label>
+              <br>
+              <mat-select formControlName="selectCountry" required>
+                <mat-option [value]="country" *ngFor="let country of countrys">{{country}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput   placeholder="Gouvernorat de Naissance " formControlName="gouvernoratNaissance"  required>
+            </mat-form-field>
             <br>
             <mat-form-field>
             <input matInput   placeholder="Nationalité" formControlName="nationalite"  required>
@@ -222,14 +235,23 @@
 
 
             <br>
-            <mat-form-field>
-              <input matInput   placeholder="Votre versement initial" formControlName="versement"  required>
-            </mat-form-field>
 
-            <div>
+
+            <label>Copie CIN</label>
+            <input  type="file" accept="image/*"   formControlName="copieCIN"  (change)="fileSelected1($event)">
+
+            <br>
+
+              <label>fiche de paie</label>
+              <input  type="file" accept="image/*"  formControlName="fichePaie"  (change)="fileSelected2($event)">
+
+            <br>
+
+              <label>Facture</label>
+              <input  type="file" accept="image/*"   formControlName="facture"  (change)="fileSelected3($event)">
+
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
-            </div>
           </form>
         </mat-step>
 
@@ -243,8 +265,7 @@
             <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
         </mat-step>
-      </mat-horizontal-stepper>
-
+      </mat-vertical-stepper>
 
 
 

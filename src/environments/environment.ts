@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: 'AIzaSyBlxjhTozqJ8ZGm7FE_0xPt0vP8cR3Uum8',
+    authDomain: 'biat-uploadfiles.firebaseapp.com',
+    databaseURL: 'https://biat-uploadfiles.firebaseio.com',
+    projectId: 'biat-uploadfiles',
+    storageBucket: 'biat-uploadfiles.appspot.com',
+    messagingSenderId: '169874585779',
+    appId: '1:169874585779:web:cbdbc7d93fc3589e'
+  }
 };
 
 /*

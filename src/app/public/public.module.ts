@@ -15,18 +15,24 @@ import {
   MatButtonModule, MatCardModule, MatDatepickerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatNativeDateModule,
-  MatRadioModule,
+  MatInputModule, MatNativeDateModule, MatOptionModule,
+  MatRadioModule, MatSelectModule,
   MatSnackBarModule,
   MatStepperModule
 } from '@angular/material';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ProfileComponent} from './profile/profile.component';
+import { ChooseAccountComponent } from './choose-account/choose-account.component';
+import { CompanyAccountComponent } from './company-account/company-account.component';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment';
 
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, HomeComponent, FooterComponent,
-    HeaderComponent, AccountComponent, NotFoundComponent, ProfileComponent],
+    HeaderComponent, AccountComponent, NotFoundComponent, ProfileComponent, ChooseAccountComponent, CompanyAccountComponent],
   providers: [AuthService],
   exports: [
     FooterComponent,
@@ -48,7 +54,12 @@ import {ProfileComponent} from './profile/profile.component';
     MatButtonModule,
     MatCardModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatOptionModule,
+    MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ]
 })
 export class PublicModule {
