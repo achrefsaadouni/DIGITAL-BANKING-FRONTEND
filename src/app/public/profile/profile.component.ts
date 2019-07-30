@@ -3,8 +3,11 @@ import {AuthService} from '../shared/auth.service';
 import Swal from 'sweetalert2';
 import {User} from '../shared/models/User';
 import {UserService} from '../services/user.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatTableDataSource} from '@angular/material';
 import {Router} from '@angular/router';
+import {Compte} from '../shared/models/Compte';
+import {AccountService} from '../services/account.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-profile',
@@ -21,11 +24,26 @@ export class ProfileComponent implements OnInit {
   newPasswordRe = '';
   private erreur = '';
   private erreurR: string;
+  private comptes: Compte[];
+  private loading: boolean;
 
-  constructor(private authService: AuthService, private service: UserService, private snackBar: MatSnackBar, private route: Router) {
+  constructor(private authService: AuthService, private service: UserService, private spinner: NgxSpinnerService,
+              private snackBar: MatSnackBar, private route: Router, private compteService: AccountService) {
     this.userUpdate = this.authService.getUser();
     this.firstName = this.userUpdate.firstName;
     this.lastName = this.userUpdate.lastName;
+
+
+    this.loading = true;
+    this.spinner.show('sp2');
+    this.compteService.getAccounts(this.userUpdate.email).subscribe(data => {
+      this.comptes = data;
+    }, error => {}
+    , () => {
+        this.loading = false;
+        this.spinner.hide('sp2');
+      }
+    );
   }
 
   ngOnInit() {

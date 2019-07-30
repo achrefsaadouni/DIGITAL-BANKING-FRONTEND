@@ -22,12 +22,14 @@ import {
 } from '@angular/material';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ProfileComponent} from './profile/profile.component';
+import {UserService} from './services/user.service';
+import {AccountService} from './services/account.service';
 
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent, HomeComponent, FooterComponent,
     HeaderComponent, AccountComponent, NotFoundComponent, ProfileComponent],
-  providers: [AuthService],
+  providers: [AuthService , UserService , AccountService],
   exports: [
     FooterComponent,
     HeaderComponent
