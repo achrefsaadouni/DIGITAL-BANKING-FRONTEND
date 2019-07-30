@@ -25,12 +25,14 @@ export class UserService {
     return this.http.get<User>(
       ApiUri.URI + 'user-service/api/user/' + id);
   }
+
   public update(id, user) {
     return this.http.put(
       ApiUri.URI + 'user-service/api/user/' + id,
       user
     );
   }
+
   public ban(id) {
     return this.http.put(
       ApiUri.URI + 'user-service/api/user/ban/' + id,
@@ -52,4 +54,13 @@ export class UserService {
   set markerUser(value: User) {
     this._markerUser = value;
   }
+
+  updateRole(id: string, role: string) {
+    return this.http.put(
+      ApiUri.URI + 'user-service/api/user/' + id + '/' + role,
+      null
+    );
+  }
+
+
 }

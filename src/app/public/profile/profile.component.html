@@ -14,7 +14,7 @@
         <div class="col-lg-7 col-md-10">
           <h1 class="display-2 text-white">Bienvenu Jesse</h1>
           <p class="text-white mt-0 mb-5">La BIAT met son expertise et sa solidité au profit de ses clients et de l’économie de la Tunisie</p>
-          <a href="#!" class="btn btn-info">Nouveau Compte</a>
+          <a class="nav-link" routerLink="/account" routerLinkActive="active">Nouveau Compte</a>
         </div>
       </div>
     </div>
@@ -75,20 +75,28 @@
           </div>
         </div>
       </div>
+
       <div class="col-xl-8 order-xl-1">
         <div class="card bg-secondary shadow">
+
           <div class="card-header bg-white border-0">
             <div class="row align-items-center">
               <div class="col-8">
                 <h3 class="mb-0">Mon Compte</h3>
               </div>
-              <div class="col-4 text-right">
-                <a href="#!" class="btn btn-sm btn-primary">Modifier</a>
-              </div>
             </div>
           </div>
           <div class="card-body">
-            <form>
+            <form role="form" (ngSubmit)="updateUser()">
+              <div>
+                <div class="row align-items-center">
+                  <div class="col-8">
+                  </div>
+                  <div class="col-4 text-right">
+                    <input type="submit" class="btn btn-sm btn-primary" value="Modifier" [disabled]=""/>
+                  </div>
+                </div>
+              </div>
               <h6 class="heading-small text-muted mb-4">Information Utilisateur</h6>
               <div class="pl-lg-4">
                 <div class="row">
@@ -103,27 +111,27 @@
                   <div class="col-lg-6">
                     <div class="form-group focused">
                       <label class="form-control-label" for="input-first-name">Nom</label>
-                      <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" required="required" value="{{ authService.getUser().lastName }}">
+                      <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" required="required" name="firstName" [(ngModel)]="firstName" [required]="true">
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group focused">
                       <label class="form-control-label" for="input-last-name">Prénom</label>
-                      <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Prénom" required="required" value="{{ authService.getUser().firstName }}">
+                      <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Prénom" name="lastName" [(ngModel)]="lastName"  [required]="true">
                     </div>
                   </div>
                 </div>
               </div>
             </form>
 
-            <form>
+            <form role="form" (ngSubmit)="updatePassword()">
               <hr class="my-4">
               <div>
                 <div class="row align-items-center">
                   <div class="col-8">
                   </div>
                   <div class="col-4 text-right">
-                    <a href="#!" class="btn btn-sm btn-primary">Changer</a>
+                    <input type="submit" class="btn btn-sm btn-primary" value="Changer" />
                   </div>
                 </div>
               </div>
@@ -134,7 +142,8 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">Ancien Mot De Passe</label>
-                      <input type="password"  class="form-control form-control-alternative" placeholder="Ancien Mot De Passe">
+                      <input type="password" name="ancienPassword" [(ngModel)]="ancienPassword"  required="required"  class="form-control form-control-alternative" placeholder="Ancien Mot De Passe">
+                      <span style="color: red" *ngIf="this.ancienPassword === ''">{{erreurR}}</span>
                     </div>
                   </div>
                 </div>
@@ -142,13 +151,16 @@
                   <div class="col-lg-6">
                     <div class="form-group focused">
                       <label class="form-control-label" for="input-first-name">Nouveau Mot De Passe</label>
-                      <input type="password"  class="form-control form-control-alternative" placeholder="Nouveau Mot De Passe" >
+                      <input type="password"  name="newPassword" [(ngModel)]="newPassword"  required="required" class="form-control form-control-alternative" placeholder="Nouveau Mot De Passe" >
+                      <span style="color: red" *ngIf="this.newPassword === ''">{{erreurR}}</span>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group focused">
                       <label class="form-control-label" for="input-last-name">Confirm Mot De Passe</label>
-                      <input type="password"  class="form-control form-control-alternative" placeholder="Confirm Mot De Passe" >
+                      <input type="password"   name="newPasswordRe" [(ngModel)]="newPasswordRe"  required="required" class="form-control form-control-alternative" placeholder="Confirm Mot De Passe" >
+                      <span style="color: red" >{{erreur}}</span><br *ngIf="this.erreur !== ''">
+                      <span style="color: red" *ngIf="this.newPasswordRe === ''">{{erreurR}}</span>
                     </div>
                   </div>
                 </div>

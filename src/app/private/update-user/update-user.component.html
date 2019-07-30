@@ -1,25 +1,25 @@
 <div class="example-container col-lg-7">
-  <form class="example-container" [formGroup]="">
+  <form class="example-container" role="form" (ngSubmit)="updateUser()">
 
     <mat-form-field floatLabel="auto" >
       <mat-label>Pénom</mat-label>
-      <input matInput placeholder="Pénom" value="{{userUpdate.firstName}}">
+      <input matInput placeholder="Pénom" name="firstName" [(ngModel)]="firstName" [required]="true">
     </mat-form-field>
 
     <mat-form-field floatLabel="auto">
       <mat-label>Nom</mat-label>
-      <input matInput placeholder="Nom" value="{{userUpdate.lastName}}">
+      <input matInput placeholder="Nom" name="lastName" [(ngModel)]="lastName"  [required]="true">
     </mat-form-field>
 
 
     <div>
       <label>Role: </label>
-      <mat-radio-group>
-        <mat-radio-button [checked]="userUpdate.roles[0].role === 'ADMIN'" value="ADMIN">Administrateur</mat-radio-button>
-        <mat-radio-button [checked]="userUpdate.roles[0].role === 'USER'" value="ADMIN" value="USER">Simple Utilisateur</mat-radio-button>
+      <mat-radio-group [(ngModel)]="role" name="role">
+        <mat-radio-button value="ADMIN">Administrateur</mat-radio-button>
+        <mat-radio-button value="USER">Simple Utilisateur</mat-radio-button>
       </mat-radio-group>
     </div>
 
-    <input type="submit"   value="Enregistrer">
+    <input class="btn btn-primary btn-lg" style="background-color: #004579; color: white" type="submit" value="Modifier"/>
   </form>
 </div>

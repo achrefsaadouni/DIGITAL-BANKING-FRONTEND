@@ -9,6 +9,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import {MatSnackBar} from '@angular/material';
 import {SharedService} from '../services/shared.service';
+import {AuthService} from '../../public/shared/auth.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class UsersComponent implements OnInit {
   private loading: boolean;
 
   constructor(private service: UserService, private spinner: NgxSpinnerService,
-              private snackBar: MatSnackBar, private sharedService: SharedService) {
+              private snackBar: MatSnackBar, private sharedService: SharedService, private authservice: AuthService) {
     this.sharedService.breadcrumb = ['Dashboard' , 'Utilisateur'];
     this.loading = true;
     this.spinner.show('sp1');
