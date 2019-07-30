@@ -28,8 +28,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
-import {UserService} from './services/user.service';
-import {AccountService} from './services/account.service';
+import {QRCodeModule} from 'angularx-qrcode';
+
 
 
 @NgModule({
@@ -62,6 +62,7 @@ import {AccountService} from './services/account.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    QRCodeModule
   ]
 })
 export class PublicModule {

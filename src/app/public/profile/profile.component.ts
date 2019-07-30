@@ -32,14 +32,17 @@ export class ProfileComponent implements OnInit {
     this.userUpdate = this.authService.getUser();
     this.firstName = this.userUpdate.firstName;
     this.lastName = this.userUpdate.lastName;
-
+    this.getPosition().then(pos => {
+      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+    });
 
     this.loading = true;
     this.spinner.show('sp2');
     this.compteService.getAccounts(this.userUpdate.email).subscribe(data => {
-      this.comptes = data;
-    }, error => {}
-    , () => {
+        this.comptes = data;
+      }, error => {
+      }
+      , () => {
         this.loading = false;
         this.spinner.hide('sp2');
       }
@@ -102,4 +105,25 @@ export class ProfileComponent implements OnInit {
       this.erreurR = '';
     }, 3000);
   }
+
+  stringify(c: Compte) {
+    return 'email : ' + c.email + '\nnom : ' + c.nom + '\nprenom : ' + c.prenom +
+      '\nadresse : ' + c.adresse + '\ntype compte : ' + c.type_compte + '\ntype service : '
+      + c.type_service + '\n gouvernorat : ' + c.gouvernorat;
+  }
+
+
+  getPosition(): Promise<any> {
+    return new Promise((resolve, reject) => {
+
+      navigator.geolocation.getCurrentPosition(resp => {
+
+          resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+        },
+        err => {
+          reject(err);
+        });
+    });
+  }
+
 }

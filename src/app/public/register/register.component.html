@@ -33,10 +33,23 @@
           <!-- Login Form -->
           <form class="m-5" role="form" (ngSubmit)="register()">
             <input type="text"  [(ngModel)]="nom" class="fadeIn second" name="Last Name" placeholder="Nom" required="required">
+            <br>
+            <span *ngIf="erreurR!== ''" style="color : red">{{erreurR}}</span>
             <input type="text"  [(ngModel)]="prenom" class="fadeIn second" name="First Name" placeholder="Prenom" required="required">
+            <br>
+            <span *ngIf="erreurR!== ''" style="color : red">{{erreurR}}</span>
             <input type="email" [(ngModel)]="username" id="login" class="fadeIn second" name="Email" placeholder="Email" required="required">
+            <br>
+            <span *ngIf="erreurR!== ''" style="color : red">{{erreurR}}</span>
             <input type="password" [(ngModel)]="password" id="password" class="fadeIn third" name="Password" placeholder="Mot de passe" required="required">
+            <br>
+            <span *ngIf="erreurR!== ''" style="color : red">{{erreurR}}</span>
             <input type="password" [(ngModel)]="repassword" class="fadeIn third" name="RePassword" placeholder="Confirm Mot de passe" required="required">
+            <br>
+            <span *ngIf="erreurR!== ''" style="color : red">{{erreurR}}</span>
+            <br>
+            <span *ngIf="erreur!== ''" style="color : red">{{erreur}}</span>
+
             <input type="submit"  class="fadeIn fourth " value="Envoyer">
           </form>
           <div id="formFooter">

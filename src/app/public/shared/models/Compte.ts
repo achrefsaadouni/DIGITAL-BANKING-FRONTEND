@@ -51,8 +51,7 @@ export class Compte {
   // tslint:disable-next-line:variable-name
   payes_activite: number;
   // tslint:disable-next-line:variable-name
-  type_compte;
-  string;
+  type_compte: string;
   // tslint:disable-next-line:variable-name
   etat_du_compte: string;
   enabled: boolean;
@@ -62,5 +61,5 @@ export class Compte {
   fiche_paie: string;
   facture: string;
 
-
 }
+

@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  displayedColumns: string[] = ['nom', 'prenom', 'email', 'revenu_net_mensuel', 'type_compte', 'etat', 'action'];
+  displayedColumns: string[] = ['type_compte', 'nom', 'prenom', 'email', 'revenu_net_mensuel', 'etat', 'action'];
   dataSource: MatTableDataSource<Compte>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
