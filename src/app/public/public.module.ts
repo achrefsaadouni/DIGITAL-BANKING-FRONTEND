@@ -29,6 +29,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../environments/environment';
 import {QRCodeModule} from 'angularx-qrcode';
+import {AgmCoreModule} from '@agm/core';
 
 
 
@@ -62,7 +63,11 @@ import {QRCodeModule} from 'angularx-qrcode';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    QRCodeModule
+    QRCodeModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC9gQHRog7B76-y6PK28V76L0UZMAEGDAw',
+      libraries: ['places']
+    })
   ]
 })
 export class PublicModule {

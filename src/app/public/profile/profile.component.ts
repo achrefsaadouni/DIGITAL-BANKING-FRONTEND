@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {Compte} from '../shared/models/Compte';
 import {AccountService} from '../services/account.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -26,14 +27,18 @@ export class ProfileComponent implements OnInit {
   private erreurR: string;
   private comptes: Compte[];
   private loading: boolean;
+  lat: any;
+  lng: any;
 
   constructor(private authService: AuthService, private service: UserService, private spinner: NgxSpinnerService,
-              private snackBar: MatSnackBar, private route: Router, private compteService: AccountService) {
+              private snackBar: MatSnackBar, private route: Router, private compteService: AccountService,
+              private sanitizer: DomSanitizer) {
     this.userUpdate = this.authService.getUser();
     this.firstName = this.userUpdate.firstName;
     this.lastName = this.userUpdate.lastName;
     this.getPosition().then(pos => {
-      console.log(`Positon: ${pos.lng} ${pos.lat}`);
+      this.lat = pos.lat ;
+      this.lng = pos.lng ;
     });
 
     this.loading = true;
@@ -127,3 +132,4 @@ export class ProfileComponent implements OnInit {
   }
 
 }
+

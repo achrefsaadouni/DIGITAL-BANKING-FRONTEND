@@ -187,7 +187,9 @@
                       <p>  Etat de Compte : {{ c.etat_du_compte }}</p>
                       </mat-card-content>
                       <mat-card-actions>
-                        <button mat-button>Terminer</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          Agences prés de moi
+                        </button>
                       </mat-card-actions>
                     </mat-card>
                   </div>
@@ -213,3 +215,16 @@
              [fullScreen]="true">
   <p style="color: #f28820"> Chargement de vos comptes bancaires... </p>
 </ngx-spinner>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="lat">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+  </div>
+  </div>
+</div>
