@@ -1,7 +1,220 @@
 <body class="bg-light">
 <app-header></app-header>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
 
+  <div class="row">
+
+    <div class="col-md-12 order-md-1">
+
+
+      <mat-vertical-stepper  #stepper  >
+        <mat-step #step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Informations générales</ng-template>
+
+            <mat-form-field>
+              <input matInput   placeholder="Nom de l'entreprise" formControlName="nomEntreprise"  required>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput [matDatepicker]="dp3" placeholder="Date de création" formControlName="dateCreation" >
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput   placeholder="Adresse" formControlName="adresse"  required>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+            <input matInput   placeholder="Téléphone domicile" formControlName="domicile"  required>
+              <br>
+          </mat-form-field>
+            <br>
+            <label>Demande de crédit immédiat</label>
+            <br>
+            <mat-radio-group formControlName="selectCredit" >
+              <mat-radio-button value="Oui">Oui</mat-radio-button>
+              <mat-radio-button value="Non">Non</mat-radio-button>
+            </mat-radio-group>
+
+
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+
+
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Contact</ng-template>
+
+            <mat-form-field>
+              <input matInput   placeholder="Nom" formControlName="nom"  required>
+            </mat-form-field>
+            <br>
+            <mat-form-field >
+              <input matInput  placeholder="Prenom"  formControlName="prenom" required >
+            </mat-form-field>
+            <br>
+            <label >Civilité</label>
+            <br>
+            <mat-radio-group formControlName="gender" required>
+              <mat-radio-button value="Monsieur">Monsieur</mat-radio-button>
+              <mat-radio-button value="Madame">Madame</mat-radio-button>
+              <mat-radio-button value="Mlle">Mlle</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field [hidden]="!(secondFormGroup.value.gender === 'Madame')" >
+              <input matInput   placeholder="Nom de jeune fille" formControlName="nomJF">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput formControlName="profession"  placeholder="profession" >
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+            <input matInput   placeholder="Téléphone mobile" formControlName="mobile"  required>
+          </mat-form-field>
+
+            <br>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+
+        <mat-step [stepControl]="thirdFormGroup">
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Informations conernat votre entreprise {{firstFormGroup.value.nomEntreprise}}</ng-template>
+            <mat-form-field  >
+              <input matInput formControlName="domaine"  placeholder="Domaine" >
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Fin de l'exercice" formControlName="finExercice" >
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput   placeholder="Code d'activite" formControlName="codeActivite"  required>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput   placeholder="Chiffre d'affaires" formControlName="chiffreAffaire"  required>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+            <input matInput   placeholder="Nombre de salariés" formControlName="nbrSalaries" >
+          </mat-form-field>
+            <br>
+            <mat-form-field>
+              <input matInput   placeholder="Payes d’activité" formControlName="payeActivite" >
+            </mat-form-field>
+
+            <br>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+
+        <mat-step [stepControl]="fourthFormGroup">
+          <form [formGroup]="fourthFormGroup">
+            <ng-template matStepLabel>Utilisation du compte</ng-template>
+            <label>Comment pensez-vous alimenter votre compte?</label>
+
+            <mat-radio-group formControlName="selectAlimentation" required>
+              <mat-radio-button value="revenu">revenus / salaires</mat-radio-button>
+              <mat-radio-button value="virement"> virements externes</mat-radio-button>
+              <mat-radio-button value="autres"> Autres</mat-radio-button>
+            </mat-radio-group>
+            <br>
+            <label> quels services souhaitez-vous utiliser ?</label>
+
+            <mat-radio-group formControlName="selectServices" required>
+              <mat-radio-button value="prelevements">Prélèvements</mat-radio-button>
+              <mat-radio-button value="creditConsommation">Crédit consommation</mat-radio-button>
+              <mat-radio-button value="creditImmobilier">Crédit immobilier</mat-radio-button>
+              <mat-radio-button value="virements">Virements</mat-radio-button>
+              <mat-radio-button value="epargne">Epargne</mat-radio-button>
+            </mat-radio-group>
+            <br>
+
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step [stepControl]="fifthFormGroup">
+          <form [formGroup]="fifthFormGroup">
+            <ng-template matStepLabel>Justificatifs </ng-template>
+
+            <mat-label>Copie CIN</mat-label>
+
+            <br>
+            <input  type="file" accept="image/*"   formControlName="copieCIN"  (change)="fileSelected1($event)">
+
+            <br>
+            <mat-label>fiche de paie</mat-label>
+
+            <br>
+            <input  type="file" accept="image/*"  formControlName="fichePaie"  (change)="fileSelected2($event)">
+
+            <br>
+            <mat-label>Facture</mat-label>
+
+            <br>
+            <input  type="file" accept="image/*"   formControlName="facture"  (change)="fileSelected3($event)">
+
+            <br>
+
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </form>
+        </mat-step>
+
+
+
+        <mat-step>
+          <ng-template matStepLabel>Valider</ng-template>
+          <button
+            [disabled]="!(firstFormGroup.valid && secondFormGroup.valid && thirdFormGroup.valid && fourthFormGroup.valid && fifthFormGroup.valid)"
+            class="btn btn-primary btn-lg btn-block" (click)="SubmitCompte()" >Valider</button>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+
+
+
+
+
+
+
+    </div>
+  </div>
 
   <app-footer></app-footer>
 </div>

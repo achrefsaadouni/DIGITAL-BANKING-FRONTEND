@@ -60,6 +60,7 @@ export class Compte {
   // tslint:disable-next-line:variable-name
   fiche_paie: string;
   facture: string;
+  nomEntreprise: string;
 
 }
 

@@ -12,7 +12,7 @@
     <div class="col-md-12 order-md-1">
 
 
-      <mat-vertical-stepper  #stepper linear >
+      <mat-vertical-stepper  #stepper  >
         <mat-step #step [stepControl]="firstFormGroup">
           <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Informations générales</ng-template>
@@ -85,6 +85,7 @@
             <br>  <mat-form-field>
             <input matInput   placeholder="Téléphone domicile" formControlName="domicile"  required>
           </mat-form-field>
+            <mat-label>Etes-vous?</mat-label>
             <br>
             <mat-radio-group formControlName="selectDomicile" required>
               <mat-radio-button value="proprietaire">Propriétaire</mat-radio-button>
@@ -182,10 +183,11 @@
             <mat-form-field [hidden]="!(fifthFormGroup.value.selectDomaine === 'Oui')" >
               <input matInput formControlName="profession"  placeholder="profession" >
             </mat-form-field>
+            <br>
             <mat-form-field>
               <input matInput   placeholder="Votre revenu net mensuel" formControlName="revenuMensuel"  required>
             </mat-form-field>
-            <a href=""><h2>Vous êtes éligible aux cartes bancaires suivantes</h2></a>
+            <br>
             <div>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
@@ -227,29 +229,29 @@
 
         <mat-step [stepControl]="seventhFormGroup">
           <form [formGroup]="seventhFormGroup">
-            <ng-template matStepLabel>Choix </ng-template>
-            <label>Choisissez votre carte</label>
-            <br>
-
-                    <label>loading...</label>
-
+            <ng-template matStepLabel>Justificatifs </ng-template>
 
             <br>
 
 
-            <label>Copie CIN</label>
+<mat-label>Copie CIN</mat-label>
+
+            <br>
             <input  type="file" accept="image/*"   formControlName="copieCIN"  (change)="fileSelected1($event)">
 
             <br>
+            <mat-label>fiche de paie</mat-label>
 
-              <label>fiche de paie</label>
+            <br>
               <input  type="file" accept="image/*"  formControlName="fichePaie"  (change)="fileSelected2($event)">
 
             <br>
+            <mat-label>Facture</mat-label>
 
-              <label>Facture</label>
+            <br>
               <input  type="file" accept="image/*"   formControlName="facture"  (change)="fileSelected3($event)">
 
+            <br>
               <button mat-button matStepperPrevious>Back</button>
               <button mat-button matStepperNext>Next</button>
           </form>

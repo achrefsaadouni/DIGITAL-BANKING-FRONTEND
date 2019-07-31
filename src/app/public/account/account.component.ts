@@ -86,7 +86,6 @@ export class AccountComponent implements OnInit {
       selectServices: ['', Validators.required]
     });
     this.seventhFormGroup = this._formBuilder.group({
-      selectCarte: ['', Validators.required],
       copieCIN: ['', Validators.required],
       fichePaie: ['', Validators.required],
       facture: ['', Validators.required]
@@ -160,7 +159,7 @@ export class AccountComponent implements OnInit {
     this.compte.type_alimentation = this.sixthFormGroup.value.selectAlimentation;
     this.compte.type_service = this.sixthFormGroup.value.selectServices;
     // seventh form groupe
-    this.compte.type_carte = this.seventhFormGroup.value.selectCarte;
+
     if (!(this.selectedImage1 == null)) {
       // tslint:disable-next-line:prefer-const
       let filePath1 = `test/${this.selectedImage1.name}_${new Date()}`;
@@ -202,7 +201,7 @@ export class AccountComponent implements OnInit {
     }
 
     // type du compte
-    this.compte.type_compte = 'professionel';
+    this.compte.type_compte = 'physique';
     console.log(this.compte);
 
     setTimeout(() => {
