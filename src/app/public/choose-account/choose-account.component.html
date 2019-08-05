@@ -1,11 +1,22 @@
 <body class="bg-light">
+
 <app-header></app-header>
-<div class="container">
-  <a routerLink="/professional-account" routerLinkActive="active">Compte Physique</a>
-  <a routerLink="/company-account" routerLinkActive="active">Compte Morale</a>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <a routerLink="/professional-account" routerLinkActive="active">Compte Physique</a>
-  <a routerLink="/company-account" routerLinkActive="active">Compte Morale</a>
-</div>
+
+  <div class="row" style="padding: 10px">
+
+    <div class="column" style="padding: 150px">
+      <a routerLink="/professional-account" routerLinkActive="active"><img src="../assets/img/phys.jpg" width="500" height="400"><br>    <h2 style="border-image-width: inherit">Compte Physique</h2>   </a>
+    </div>
+
+
+    <div class="column" style="padding: 150px" >
+      <a routerLink="/company-account" routerLinkActive="active"><img src="../assets/img/morale.jpg" width="500" height="400">
+        <h2>Compte Morale</h2>  </a>
+    </div>
+
+  </div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
+
 <app-footer></app-footer>
 </body>
